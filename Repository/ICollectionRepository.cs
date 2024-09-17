@@ -1,4 +1,5 @@
 ﻿using BackEnd.Model;
+﻿using BackEnd.Models;
 
 namespace BackEnd.Repository
 {
