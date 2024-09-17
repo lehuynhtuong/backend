@@ -1,25 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
-namespace BackEnd.Models
+namespace BackEnd.Models;
+
+public partial class Slider
 {
-    [Table("Slider")]
-    public class Slider
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
+    public long Id { get; set; }
 
-        public string Title { get; set; }
+    public string? BackLink { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        public string ImageUrl { get; set; }
+    public string? Description { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        public string BackLink { get; set; }
+    public string? ImageUrl { get; set; }
 
-        public string Description { get; set; }
-    }
+    public string? Title { get; set; }
+
 }

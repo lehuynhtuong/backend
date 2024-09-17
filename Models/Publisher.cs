@@ -1,23 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
 
-namespace BackEnd.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace BackEnd.Models;
+
+public partial class Publisher
 {
-    [Table("Publisher")]
-    public class Publisher
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
+    public long Id { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        public string Name { get; set; }
+    public string? Name { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        public string Website { get; set; }
+    public string? Website { get; set; }
 
-        public virtual ICollection<Book> Books { get; set; }
-    }
+    public virtual ICollection<Book> Books { get; set; } = new List<Book>();
+
 }

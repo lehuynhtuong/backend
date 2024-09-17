@@ -1,42 +1,24 @@
-﻿namespace BackEnd.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace BackEnd.Models;
+
+public partial class Feedback
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
+    public long Id { get; set; }
 
-    namespace OnlineBookShop.Models
-    {
-        [Table("Feedback")]
-        public class Feedback
-        {
-            [Key]
-            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public long Id { get; set; }
+    public string? Comment { get; set; }
 
-            public FeedbackState State { get; set; }
+    public DateTime? CreatedAt { get; set; }
 
-            [ForeignKey("BookId")]
-            public long? BookId { get; set; }
-            public virtual Book Book { get; set; }
+    public string? State { get; set; }
 
-            [Required(ErrorMessage = "The comment is required")]
-            public string Comment { get; set; }
+    public long? BookId { get; set; }
 
-            public string Answer { get; set; }
+    public long? UserId { get; set; }
 
-            public DateTime CreatedAt { get; set; }
+    public virtual Book? Book { get; set; }
 
-            [ForeignKey("UserId")]
-            public long? UserId { get; set; }
-            public virtual User User { get; set; }
-        }
-
-        public enum FeedbackState
-        {
-            Pending,
-            Approved,
-            Rejected
-        }
-
-    }
+    public virtual User? User { get; set; }
 }
+

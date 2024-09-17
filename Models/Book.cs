@@ -1,91 +1,52 @@
-﻿using BackEnd.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BackEnd.Models
+namespace BackEnd.Models;
+
+public partial class Book
 {
-    [Table("Book")]
-    public class Book
-    {
-        [Key]
-        public long Id { get; set; }
+    public long Id { get; set; }
 
-        [Required(ErrorMessage = "The title of the book is required")]
-        public string Title { get; set; }
+    public string? Isbn { get; set; }
 
-        // Replace Publisher, Authors, Language with string
-        public string Publisher { get; set; }
+    public string? Cover { get; set; }
 
-        public string Authors { get; set; }
+    public string? Description { get; set; }
 
-        public string Language { get; set; }
+    public float? Discount { get; set; }
 
-        // Many-to-many with BookCollection
-        public ICollection<Collection> Collections { get; set; }
+    public int? Page { get; set; }
 
-        [Column(TypeName = "text")]
-        public string Description { get; set; }
+    public long? Price { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Stock must be at least 0")]
-        public int Stock { get; set; }
+    public DateOnly? PublicationDate { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Sold must be at least 0")]
-        public int Sold { get; set; }
+    public string? Size { get; set; }
 
-        public DateTime? PublicationDate { get; set; }
+    public int? Sold { get; set; }
 
-        public string Size { get; set; }
+    public string? State { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "The weight must be at least 1")]
-        public int Weight { get; set; }
+    public int? Stock { get; set; }
 
-        [Range(1, long.MaxValue, ErrorMessage = "The price must be at least 1")]
-        public long Price { get; set; }
+    public string? Title { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "The page count must be at least 1")]
-        public int Page { get; set; }
+    public int? Weight { get; set; }
 
-        public string Cover { get; set; }
+    public long? CategoryId { get; set; }
 
-        [Required(ErrorMessage = "The ISBN is required")]
-        [StringLength(13, MinimumLength = 10, ErrorMessage = "ISBN must be between 10 and 13 characters")]
-        public string ISBN { get; set; }
+    public long? PublisherId { get; set; }
 
-        [Range(0, 1, ErrorMessage = "The discount must be between 0 and 1")]
-        public float Discount { get; set; }
+    public virtual BookCategory? Category { get; set; }
 
-        // Foreign key to BookCategory
-        [ForeignKey("CategoryId")]
-        public BookCategory Category { get; set; }
+    public virtual ICollection<Feedback> Feedbacks { get; set; } = new List<Feedback>();
 
-        public long? CategoryId { get; set; }
+    public virtual ICollection<Image> Images { get; set; } = new List<Image>();
 
-        // One-to-many with Image
-        public ICollection<Image> Images { get; set; }
+    public virtual ICollection<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
 
-        // Enum for BookState
-        public BookState State { get; set; }
+    public virtual Publisher? Publisher { get; set; }
 
-        // Calculate sale price after discount
-        [NotMapped]
-        public long? SalePrice
-        {
-            get
-            {
-                if (Price != 0 && Discount > 0)
-                {
-                    return (long)(Price - (Price * Discount));
-                }
-                return null;
-            }
-        }
-    }
+    public virtual ICollection<Wishlist> Wishlists { get; set; } = new List<Wishlist>();
 
-    public enum BookState
-    {
-        Active,
-        Inactive,
-    }
 }

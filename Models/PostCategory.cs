@@ -1,23 +1,14 @@
-﻿using BackEnd.Models;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-    namespace BackEnd.Models
-    {
-        [Table("PostCategory")]
-        public class PostCategory
-        {
-            [Key]
-            [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public long Id { get; set; }
+namespace BackEnd.Models;
 
-            [Required(ErrorMessage = "The category name is required")]
-            public string Name { get; set; }
+public partial class PostCategory
+{
+    public long Id { get; set; }
 
-            // Initialize the collection to avoid null reference issues
-            public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
-        }
-    }
+    public string? Name { get; set; }
 
+    public virtual ICollection<Post> Posts { get; set; } = new List<Post>();
+}
 
