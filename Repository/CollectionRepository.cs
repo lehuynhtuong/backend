@@ -1,5 +1,6 @@
 ﻿using BackEnd.Exceptions;
 using BackEnd.Model;
+using BackEnd.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace BackEnd.Repository
