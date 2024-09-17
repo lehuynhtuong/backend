@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using BackEnd.Model;
+using BackEnd.Models;
 
 namespace BackEnd.Repository
 {
