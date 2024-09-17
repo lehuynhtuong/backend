@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using BackEnd.Model;
+using BackEnd.Models;
 using BackEnd.Service;
 
 namespace BackEnd.Controllers
